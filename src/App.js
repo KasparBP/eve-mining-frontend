@@ -1,9 +1,14 @@
 import React from 'react';
 import './App.css';
-import Button from "@material-ui/core/Button";
+import Routes from "./Routes";
 
 function App() {
-  return <Button color="primary">Login</Button>;
+  return (
+      <div>
+          <center>Eve mining</center>
+        <Routes />
+      </div>
+  );
 }
 
 export default App;
