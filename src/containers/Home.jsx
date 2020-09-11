@@ -3,7 +3,7 @@ import React from "react";
 class Home extends React.Component {
 
     componentDidMount() {
-        fetch("http://localhost:8080/user", {"method": "GET", "credentials": "include"})
+        fetch("http://localhost:8080/api/v1/character", {"method": "GET", "credentials": "include"})
             .then(res => res.json())
             .then(
                 (result) => {
