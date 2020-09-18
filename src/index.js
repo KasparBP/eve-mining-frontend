@@ -3,13 +3,29 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux'
+import rootReducer from './reducers'
+import {applyMiddleware, createStore} from 'redux'
 import { BrowserRouter as Router } from 'react-router-dom';
+import thunkMiddleware from 'redux-thunk'
+import { createLogger } from 'redux-logger'
+import {fetchCharacterInfo} from "./actions";
+
+const loggerMiddleware = createLogger();
+const store = createStore(rootReducer,
+    applyMiddleware(
+        thunkMiddleware, // lets us dispatch() functions
+        loggerMiddleware // neat middleware that logs actions
+));
+store.dispatch(fetchCharacterInfo());
 
 ReactDOM.render(
   <React.StrictMode>
-      <Router>
-          <App />
-      </Router>,
+      <Provider store={store}>
+          <Router>
+              <App />
+          </Router>
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
