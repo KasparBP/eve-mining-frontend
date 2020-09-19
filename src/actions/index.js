@@ -1,4 +1,4 @@
-
+import axios from "axios";
 
 export const REQUEST_CHARACTER_INFO = 'REQUEST_CHARACTER_INFO';
 function requestCharacterInfo() {
@@ -19,10 +19,9 @@ function receiveCharacterInfo(json) {
 export function fetchCharacterInfo() {
     return function (dispatch) {
         dispatch(requestCharacterInfo());
-
-        return fetch("http://localhost:8080/api/v1/character", {"method": "GET", "credentials": "include"})
+        return axios.get("http://localhost:8080/api/v1/character", {withCredentials: true})
             .then(
-                response => response.json()
+                response => response.data
             )
             .then(json =>
                 dispatch(receiveCharacterInfo(json))

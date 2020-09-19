@@ -7,9 +7,7 @@ function characterInfo(state = {}, action) {
     switch (action.type) {
         case RECEIVE_CHARACTER_INFO:
             return Object.assign({}, state, {
-                [action.characterInfo]: Object.assign({}, state, {
-                    info: action.characterInfo
-                })
+                info: action.info
             });
         default:
             return state

@@ -9,7 +9,8 @@ import {applyMiddleware, createStore} from 'redux'
 import { BrowserRouter as Router } from 'react-router-dom';
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import {fetchCharacterInfo} from "./actions";
+import { fetchCharacterInfo} from "./actions";
+import NetworkService from "./networkService";
 
 const loggerMiddleware = createLogger();
 const store = createStore(rootReducer,
@@ -17,6 +18,7 @@ const store = createStore(rootReducer,
         thunkMiddleware, // lets us dispatch() functions
         loggerMiddleware // neat middleware that logs actions
 ));
+NetworkService.setupInterceptors(store);
 store.dispatch(fetchCharacterInfo());
 
 ReactDOM.render(
